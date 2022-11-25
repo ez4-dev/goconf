@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
-	"github.com/trinhpham/goEnvConfig/pkg/envconfig"
+	"github.com/trinhpham/go-conf/pkg/envconfig"
 )
 
 type SimpleConfig struct {

@@ -1,4 +1,4 @@
-module github.com/trinhpham/goEnvConfig
+module github.com/trinhpham/go-conf
 
 go 1.19
 
