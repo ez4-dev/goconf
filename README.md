@@ -1,8 +1,17 @@
-This library helps reading configuration from environment variables.
-The initial release was inspired by [Spring Boot Relax Binding](https://github.com/spring-projects/spring-boot/wiki/Relaxed-Binding-2.0).
-This supports primitive types (bool, string, number, map, slice) and complex struct type that contains these types with only std packages in used.
+This library helps manipulate configuration with only std packages in used.
 
 # Usage
+```bash
+go get https://github.com/trinhpham/goconf
+```
+
+# Packages
+## envconfig
+This helps reading configuration from environment variables.
+The initial release was inspired by [Spring Boot Relax Binding](https://github.com/spring-projects/spring-boot/wiki/Relaxed-Binding-2.0).
+This supports primitive types (bool, string, number, map, slice) and complex struct type that contains these types.
+
+### Usage
 Find more usage examples in unit-test
 ## Simple struct
 Modeling your configuration like this
@@ -27,7 +36,7 @@ You should be able to load your config as below
 	config := SimpleConfig{}
 	envconfig.ParseConfigFromEnv("PREFIX", &config)
 ```
-## Nested struct with map and slice
+### Nested struct with map and slice
 Your configuration struct
 ```go
 type NestedConfig struct {
