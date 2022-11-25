@@ -2,7 +2,7 @@ This library helps manipulate configuration with only std packages in used.
 
 [![Go](https://github.com/trinhpham/goconf/actions/workflows/go.yml/badge.svg)](https://github.com/trinhpham/goconf/actions/workflows/go.yml)
 [![codecov](https://codecov.io/gh/trinhpham/goconf/branch/main/graph/badge.svg?token=JK7065TTWK)](https://codecov.io/gh/trinhpham/goconf)
-[![Go Reference](https://pkg.go.dev/badge/github.com/trinhpham/goconf@v0.1.0.svg)](https://pkg.go.dev/github.com/trinhpham/goconf@v0.1.0)
+[![Go Reference](https://pkg.go.dev/badge/github.com/trinhpham/goconf.svg)](https://pkg.go.dev/github.com/trinhpham/goconf)
 
 # Usage
 ```bash
