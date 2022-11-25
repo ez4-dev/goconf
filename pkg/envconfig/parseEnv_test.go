@@ -56,7 +56,7 @@ func (suite *ParseEnvSuite) TestParseSimpleConfigFromEnv() {
 	os.Setenv("PREFIX_BOOL", "true")
 
 	config := SimpleConfig{}
-	envconfig.ParseConfigFromEnv("PREFIX", &config)
+	envconfig.Load("PREFIX", &config)
 
 	suite.Equal("abc", config.StrValue)
 	suite.Equal(-123, config.IntValue)
@@ -76,7 +76,7 @@ func (suite *ParseEnvSuite) TestParseNestedConfigFromEnv() {
 	os.Setenv("PREFIX_SLICE_5_BOOL", "n")
 
 	config := NestedConfig{}
-	envconfig.ParseConfigFromEnv("PREFIX", &config)
+	envconfig.Load("PREFIX", &config)
 
 	suite.EqualValues("abc", config.StrValue)
 	suite.EqualValues(1, config.MapInt["item1"])
@@ -92,7 +92,7 @@ func (suite *ParseEnvSuite) TestParseToMap() {
 	os.Setenv("PREFIX_ITEM2", "2")
 
 	config := make(map[string]int64)
-	envconfig.ParseConfigFromEnv("PREFIX", &config)
+	envconfig.Load("PREFIX", &config)
 	suite.EqualValues(1, config["item1"])
 	suite.EqualValues(2, config["item2"])
 }
@@ -100,7 +100,7 @@ func (suite *ParseEnvSuite) TestParseToMap() {
 func (suite *ParseEnvSuite) TestParseToBool() {
 	os.Setenv("P", "f")
 	bVal := true
-	envconfig.ParseConfigFromEnv("P", &bVal)
+	envconfig.Load("P", &bVal)
 	suite.EqualValues(false, bVal)
 }
 
@@ -114,13 +114,13 @@ func (suite *ParseEnvSuite) TestPanicOnInvalidType() {
 	var tSlice []string
 	os.Setenv("P_X", "x")
 
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("", nil) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P", &tChan) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P_X", &tBool) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P_X", &tInt) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P_X", &tUint) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P_X", &tFloat) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P_X", &tFloat64) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P", &tFloat64) })
-	suite.Panics(func() { envconfig.ParseConfigFromEnv("P", &tSlice) })
+	suite.Panics(func() { envconfig.Load("", nil) })
+	suite.Panics(func() { envconfig.Load("P", &tChan) })
+	suite.Panics(func() { envconfig.Load("P_X", &tBool) })
+	suite.Panics(func() { envconfig.Load("P_X", &tInt) })
+	suite.Panics(func() { envconfig.Load("P_X", &tUint) })
+	suite.Panics(func() { envconfig.Load("P_X", &tFloat) })
+	suite.Panics(func() { envconfig.Load("P_X", &tFloat64) })
+	suite.Panics(func() { envconfig.Load("P", &tFloat64) })
+	suite.Panics(func() { envconfig.Load("P", &tSlice) })
 }

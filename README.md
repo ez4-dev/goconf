@@ -34,7 +34,7 @@ You should be able to load your config as below
 	os.Setenv("PREFIX_BOOL", "true")
 
 	config := SimpleConfig{}
-	envconfig.ParseConfigFromEnv("PREFIX", &config)
+	envconfig.Load("PREFIX", &config)
 ```
 ### Nested struct with map and slice
 Your configuration struct
@@ -60,7 +60,7 @@ Your code should be
 	os.Setenv("PREFIX_SLICE_5_BOOL", "n")
 
 	config := NestedConfig{}
-	envconfig.ParseConfigFromEnv("PREFIX", &config)
+	envconfig.Load("PREFIX", &config)
 ```
 # Change logs
 - V1.0

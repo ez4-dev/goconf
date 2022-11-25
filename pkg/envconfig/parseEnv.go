@@ -11,7 +11,7 @@ import (
 /*
 Parse config from environment variable
 */
-func ParseConfigFromEnv(envPrefix string, parsedConfig interface{}) {
+func Load(envPrefix string, parsedConfig interface{}) {
 	// Validate input
 	rConfig := reflect.ValueOf(parsedConfig)
 	if !rConfig.IsValid() || rConfig.IsZero() || rConfig.IsNil() || rConfig.Kind() != reflect.Pointer {
