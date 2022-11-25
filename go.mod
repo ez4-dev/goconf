@@ -1,4 +1,4 @@
-module github.com/trinhpham/go-conf
+module github.com/trinhpham/goconf
 
 go 1.19
 
