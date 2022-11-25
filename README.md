@@ -1,5 +1,8 @@
 This library helps manipulate configuration with only std packages in used.
 
+[![Go](https://github.com/trinhpham/goconf/actions/workflows/go.yml/badge.svg)](https://github.com/trinhpham/goconf/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/trinhpham/goconf/branch/main/graph/badge.svg?token=JK7065TTWK)](https://codecov.io/gh/trinhpham/goconf)
+
 # Usage
 ```bash
 go get https://github.com/trinhpham/goconf
