@@ -1,5 +1,5 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/vscode/devcontainers/go:0-1.19-bullseye",
   "features": {
     "ghcr.io/devcontainers/features/go:1": {}
   }
