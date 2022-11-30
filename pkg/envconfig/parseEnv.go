@@ -154,15 +154,26 @@ func setMapValue(rMap reflect.Value, mapKey string, childTokens []string, envVal
 	}
 
 	rMapKey := reflect.ValueOf(strings.ToLower(mapKey))
-	rMapValue := rMap.MapIndex(rMapKey)
-	if !rMapValue.IsValid() || rMapValue.IsZero() || rMapValue.IsNil() {
-		// Create new map value
-		rMapValue = reflect.New(rMap.Type().Elem()).Elem()
+
+	// Create new map value with org data
+	rMapValue := reflect.New(rMap.Type().Elem()).Elem()
+	if orgMapValue := rMap.MapIndex(rMapKey); orgMapValue.IsValid() {
+		cloneData(rMapValue, orgMapValue)
 	}
 
 	setField(rMapValue, childTokens, envValue)
-
 	rMap.SetMapIndex(rMapKey, rMapValue)
+}
+
+func cloneData(dstValue, orgValue reflect.Value) {
+	for i := 0; i < dstValue.NumField(); i++ {
+		dstField := dstValue.Field(i)
+		if dstField.CanSet() {
+			dstField.Set(orgValue.Field(i))
+		} else {
+			panic(fmt.Sprintf("Cannot clone field: %s", dstValue.Type().Field(i).Name))
+		}
+	}
 }
 
 func GetEnv(key, defaultValue string) string {

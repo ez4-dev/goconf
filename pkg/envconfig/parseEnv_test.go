@@ -72,6 +72,7 @@ func (suite *ParseEnvSuite) TestParseNestedConfigFromEnv() {
 	os.Setenv("PREFIX_SFL_1", "12.34")
 	os.Setenv("PREFIX_SFL_4", "56.78")
 	os.Setenv("PREFIX_MAP_S1_STR", "abc")
+	os.Setenv("PREFIX_MAP_S1_BOOL", "true")
 	os.Setenv("PREFIX_SLICE_5_STR", "xyz")
 	os.Setenv("PREFIX_SLICE_5_BOOL", "n")
 
@@ -79,12 +80,22 @@ func (suite *ParseEnvSuite) TestParseNestedConfigFromEnv() {
 	envconfig.Load("PREFIX", &config)
 
 	suite.EqualValues("abc", config.StrValue)
-	suite.EqualValues(1, config.MapInt["item1"])
-	suite.EqualValues(2, config.MapInt["item2"])
-	suite.EqualValues(12.34, config.SliceFloat[1])
-	suite.EqualValues(56.78, config.SliceFloat[4])
-	suite.EqualValues("xyz", config.SliceVal[5].StrValue)
-	suite.EqualValues(false, config.SliceVal[5].BoolValue)
+	suite.EqualValues(
+		map[string]int8{
+			"item1": 1,
+			"item2": 2,
+		}, config.MapInt)
+	suite.EqualValues([]float64{0, 12.34, 0, 0, 56.78}, config.SliceFloat)
+	suite.EqualValues(
+		SimpleConfig{
+			StrValue:  "abc",
+			BoolValue: true,
+		}, config.MapValue["s1"])
+	suite.EqualValues(
+		SimpleConfig{
+			StrValue:  "xyz",
+			BoolValue: false,
+		}, config.SliceVal[5])
 }
 
 func (suite *ParseEnvSuite) TestParseToMap() {
